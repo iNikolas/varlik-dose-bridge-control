@@ -2,7 +2,7 @@ import { CustomCSSProperties } from "./types";
 
 export function useCounterDigits() {
   const highValue: CustomCSSProperties = {
-    "--value": 0,
+    "--value": 1,
   };
   const lowValue: CustomCSSProperties = {
     "--value": 0,

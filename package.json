@@ -29,13 +29,14 @@
     "postcss": "^8",
     "prettier": "3.2.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^7.8.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --cache --fix --max-warnings 0"
     ],
-    "*.{css,md}": "prettier --write"
+    "*.{css,md,html,json}": "prettier --write"
   }
 }

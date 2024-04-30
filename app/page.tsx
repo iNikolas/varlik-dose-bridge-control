@@ -1,5 +1,10 @@
-import { WeighingDisplay } from "@/components";
 import React from "react";
+
+import {
+  ExtraSilosesGroup,
+  PrimarySilosesGroup,
+  WeighingDisplay,
+} from "@/components";
 
 export default function Home() {
   return (
@@ -8,6 +13,8 @@ export default function Home() {
         <h1>Керування зовнішніми силосами з SiloMaster</h1>
       </section>
       <WeighingDisplay />
+      <ExtraSilosesGroup />
+      <PrimarySilosesGroup />
     </main>
   );
 }

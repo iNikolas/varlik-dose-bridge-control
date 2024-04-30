@@ -7,17 +7,14 @@ export function ModeSelector() {
   const id = React.useId();
   return (
     <section>
-      <div className="prose">
-        <h5>Подача:</h5>
-      </div>
-      <label htmlFor={id} className="swap swap-flip text-xs">
+      <label className="swap swap-flip text-xs" htmlFor={id}>
         <input id={id} type="checkbox" />
-
-        <Switch className="swap-on">
-          <LuTimer /> <span>відкладена</span>
+        {}
+        <Switch className="swap-on bg-secondary text-secondary-content">
+          <LuTimer />
         </Switch>
-        <Switch className="swap-off">
-          <LuTimerOff /> <span>негайна</span>
+        <Switch className="swap-off bg-accent text-accent-content">
+          <LuTimerOff />
         </Switch>
       </label>
     </section>

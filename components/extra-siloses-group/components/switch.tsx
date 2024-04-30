@@ -1,6 +1,6 @@
 import React from "react";
 
-import { cn } from "@/utils";
+import { applyCommonPropsToChildren, cn } from "@/utils";
 
 interface SwitchProps
   extends React.DetailedHTMLProps<
@@ -13,13 +13,10 @@ interface SwitchProps
 export function Switch({ className = "", children, ...props }: SwitchProps) {
   return (
     <section
-      className={cn(
-        className,
-        "flex gap-1 items-center bg-accent text-accent-content rounded p-0.5",
-      )}
+      className={cn(className, "flex gap-1 items-center rounded p-0.5")}
       {...props}
     >
-      {children}
+      {applyCommonPropsToChildren(children, { size: 20 })}
     </section>
   );
 }

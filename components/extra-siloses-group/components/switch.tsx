@@ -6,9 +6,7 @@ interface SwitchProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
-  > {
-  className: string;
-}
+  > {}
 
 export function Switch({ className = "", children, ...props }: SwitchProps) {
   return (

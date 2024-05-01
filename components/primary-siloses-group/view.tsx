@@ -1,13 +1,18 @@
 import React from "react";
 
+import { primarySiloses } from "@/config";
+
 import { Silo } from "../silo";
+import { Controls } from "./components";
 
 export function PrimarySilosesGroup() {
   return (
     <section className="flex">
-      <Silo name="S206" />
-      <Silo name="S207" />
-      <Silo name="S208" />
+      {Object.values(primarySiloses).map((name) => (
+        <Silo key={name} name={name}>
+          <Controls relatedSilo={name} />
+        </Silo>
+      ))}
     </section>
   );
 }

@@ -2,10 +2,12 @@
 
 import React from "react";
 import { ValueOf } from "next/dist/shared/lib/constants";
+import { useUnit } from "effector-react";
 import { LuTimer, LuTimerOff } from "react-icons/lu";
 
 import { externalSiloses } from "@/config";
 import { cn } from "@/utils";
+import { externalSilosesModel } from "@/stores";
 
 import { Switch } from "./switch";
 
@@ -23,9 +25,16 @@ const tipOff =
 const tipOn =
   "Таймер увімкнено - додаткова подача почнеться від введеного значення ваги до цільової ваги в основній програмі";
 
-export function ModeSelector({ className, ...props }: ModeSelectorProps) {
+export function ModeSelector({
+  relatedSilo,
+  className,
+  ...props
+}: ModeSelectorProps) {
   const id = React.useId();
-  const [switchState, setSwitchState] = React.useState(false);
+  const siloses = useUnit(externalSilosesModel.$siloses);
+  const modeChanged = useUnit(externalSilosesModel.modeChanged);
+
+  const switchState = siloses[relatedSilo].isDelayed;
 
   return (
     <section
@@ -38,7 +47,9 @@ export function ModeSelector({ className, ...props }: ModeSelectorProps) {
           id={id}
           type="checkbox"
           checked={switchState}
-          onChange={(e) => setSwitchState(e.target.checked)}
+          onChange={(e) =>
+            modeChanged({ name: relatedSilo, isDelayed: e.target.checked })
+          }
         />
         {}
         <Switch className="swap-on bg-secondary text-secondary-content">

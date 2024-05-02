@@ -1,6 +1,6 @@
 import { primarySiloses } from "@/config";
 
-import { SilosesRecord } from "./types";
+import { SelectionChangedEvent, SilosesRecord } from "./types";
 
 function assertIsSilosesRecord(
   record: Partial<SilosesRecord>,
@@ -22,6 +22,28 @@ export function getDefaultStore(): SilosesRecord {
   );
 
   assertIsSilosesRecord(result);
+
+  return result;
+}
+
+export function updateSilosesSelection(
+  siloses: SilosesRecord,
+  { name, selection }: SelectionChangedEvent,
+) {
+  const result = { ...siloses };
+
+  Object.values(primarySiloses).forEach((siloName) => {
+    const isActiveSilo = siloName === name;
+    const currentSelection = siloses[siloName].selection;
+
+    if (isActiveSilo && currentSelection !== selection) {
+      result[siloName].selection = selection;
+    } else if (!isActiveSilo && currentSelection !== selection) {
+      result[siloName].selection = currentSelection;
+    } else {
+      result[siloName].selection = null;
+    }
+  });
 
   return result;
 }

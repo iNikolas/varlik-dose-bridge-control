@@ -3,16 +3,13 @@ import Image from "next/image";
 
 import siloPic from "@/assets/images/silo.png";
 
-import { Title } from "./components";
 import { SiloProps } from "./types";
+import { EquipmentLabel } from "../equipment-label";
 
 export function Silo({ name, children }: React.PropsWithChildren<SiloProps>) {
   return (
     <section className="relative w-32">
-      <div className="absolute z-10 left-1/2 -translate-x-2/4 top-12">
-        <Title>{name}</Title>
-        <div>{children}</div>
-      </div>
+      <EquipmentLabel title={name}>{children}</EquipmentLabel>
       <Image
         className="object-cover h-auto w-full"
         priority

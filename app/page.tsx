@@ -3,7 +3,7 @@ import React from "react";
 import {
   ExtraSilosesGroup,
   PrimarySilosesGroup,
-  WeighingDisplay,
+  WeighingHopper,
 } from "@/components";
 
 export default function Home() {
@@ -12,9 +12,9 @@ export default function Home() {
       <section className="prose">
         <h1>Керування зовнішніми силосами з SiloMaster</h1>
       </section>
-      <WeighingDisplay />
       <ExtraSilosesGroup />
       <PrimarySilosesGroup />
+      <WeighingHopper />
     </main>
   );
 }

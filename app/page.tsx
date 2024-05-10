@@ -3,8 +3,10 @@ import React from "react";
 import {
   ExtraSilosesGroup,
   PrimarySilosesGroup,
+  ScrewConveyor,
   WeighingHopper,
 } from "@/components";
+import { screws } from "@/config";
 
 export default function Home() {
   return (
@@ -15,6 +17,7 @@ export default function Home() {
       <ExtraSilosesGroup />
       <PrimarySilosesGroup />
       <WeighingHopper />
+      <ScrewConveyor isSelected={false} name={screws.sc206} isRunning={false} />
     </main>
   );
 }

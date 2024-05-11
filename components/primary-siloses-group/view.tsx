@@ -17,7 +17,10 @@ export function PrimarySilosesGroup({
   const siloses = useUnit(primarySilosesModel.$siloses);
 
   return (
-    <section className={cn("flex gap-4 max-w-max", className)} {...props}>
+    <section
+      className={cn("flex gap-4 min-w-max max-w-max", className)}
+      {...props}
+    >
       <SiloWithScrewConveyor
         className="relative left-[36%]"
         isRunning={false}

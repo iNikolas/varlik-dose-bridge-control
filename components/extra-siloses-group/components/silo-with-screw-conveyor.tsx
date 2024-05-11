@@ -6,6 +6,7 @@ import { cn } from "@/utils";
 
 import { Silo } from "../../silo";
 import { ScrewConveyor } from "../../screw-conveyor";
+import { Pipe } from "../../pipe";
 import { Controls } from "./controls";
 
 interface SiloWithScrewConveyorProps
@@ -38,7 +39,7 @@ export function SiloWithScrewConveyor({
         isSelected={isSelected}
         name={screwName}
       >
-        <div className="absolute w-10 h-2 bg-warning rotate-90 left-[24%] -top-[5%] -z-10" />
+        <Pipe className="rotate-90 left-[18.8%] -top-[20%]" />
       </ScrewConveyor>
     </section>
   );

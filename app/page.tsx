@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-  ExtraSilosesGroup,
-  PrimarySilosesGroup,
-  WeighingHopper,
-} from "@/components";
+import { PipingAndInstrumentationDiagram } from "@/components";
 
 export default function Home() {
   return (
@@ -14,13 +10,7 @@ export default function Home() {
           Керування зовнішніми силосами з SiloMaster
         </h1>
       </section>
-      <section>
-        <div className="flex">
-          <ExtraSilosesGroup className="translate-x-[15%]" />
-          <PrimarySilosesGroup className="-translate-x-[15%]" />
-        </div>
-        <WeighingHopper />
-      </section>
+      <PipingAndInstrumentationDiagram />
     </main>
   );
 }

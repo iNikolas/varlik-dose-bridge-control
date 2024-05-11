@@ -17,7 +17,7 @@ export function ExtraSilosesGroup({
   const primarySiloses = useUnit(primarySilosesModel.$siloses);
 
   return (
-    <section className={cn("flex max-w-max", className)} {...props}>
+    <section className={cn("flex min-w-max max-w-max", className)} {...props}>
       <SiloWithScrewConveyor
         siloName={externalSiloses.s202}
         screwName={screws.sc202_1}

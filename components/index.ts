@@ -1,3 +1,1 @@
-export * from "./extra-siloses-group";
-export * from "./primary-siloses-group";
-export * from "./weighing-hopper";
+export * from "./piping-and-instrumentation-diagram";

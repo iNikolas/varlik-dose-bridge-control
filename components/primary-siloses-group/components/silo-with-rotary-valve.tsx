@@ -5,6 +5,7 @@ import { primarySiloses, rotaryValves } from "@/config";
 
 import { Silo } from "../../silo";
 import { RotaryValve } from "../../rotary-valve";
+import { Pipe } from "../../pipe";
 import { Controls } from "./controls";
 
 interface SiloWithRotaryValveProps
@@ -36,7 +37,7 @@ export function SiloWithRotaryValve({
         isRunning={isRunning}
         isSelected={isSelected}
       >
-        <div className="absolute w-10 h-2 -z-10 bg-warning rotate-90 left-[10%] top-[5%]" />
+        <Pipe className="w-14 rotate-90 left-[4.7%] -top-7" />
       </RotaryValve>
     </section>
   );

@@ -5,6 +5,7 @@ import { primarySiloses, screws } from "@/config";
 
 import { ScrewConveyor } from "../../screw-conveyor";
 import { Silo } from "../../silo";
+import { Pipe } from "../../pipe";
 import { Controls } from "./controls";
 
 interface SiloWithScrewConveyorProps
@@ -36,7 +37,7 @@ export function SiloWithScrewConveyor({
         isRunning={isRunning}
         isSelected={isSelected}
       >
-        <div className="w-10 h-2 bg-warning -z-10 absolute rotate-90 left-[65.7%] -top-[10%]" />
+        <Pipe className="rotate-90 left-[61%] -top-[15%]" />
       </ScrewConveyor>
     </section>
   );

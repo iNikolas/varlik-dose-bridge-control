@@ -6,5 +6,4 @@ export interface ScrewConveyorProps
   isRunning: boolean;
   isSelected: boolean;
   name: string;
-  blinkTimeMs?: number;
 }

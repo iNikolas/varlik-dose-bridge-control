@@ -17,7 +17,7 @@ export default function Home() {
       <ExtraSilosesGroup />
       <PrimarySilosesGroup />
       <WeighingHopper />
-      <ScrewConveyor isSelected={false} name={screws.sc206} isRunning={false} />
+      <ScrewConveyor name={screws.sc206} isRunning={false} isSelected={false} />
     </main>
   );
 }

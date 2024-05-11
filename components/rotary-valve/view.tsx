@@ -3,34 +3,39 @@
 import React from "react";
 import Image from "next/image";
 
-import screwConveyorPic from "@/assets/images/screw_conveyor.png";
+import rotaryValvePic from "@/assets/images/rotary-valve.png";
 import { cn, useBlinkInterval } from "@/utils";
 
-import { ScrewConveyorProps } from "./types";
+import { RotaryValveProps } from "./types";
 import { EquipmentLabel } from "../equipment-label";
 
-export function ScrewConveyor({
+export function RotaryValve({
   className,
   isRunning,
   isSelected,
   name,
+  children,
   ...props
-}: ScrewConveyorProps) {
+}: RotaryValveProps) {
   const isBlinking = useBlinkInterval();
 
   return (
-    <section className={cn(" max-w-max relative", className)} {...props}>
-      <EquipmentLabel className="left-3/4 top-3.5 scale-50 z-10" title={name} />
+    <section className={cn("relative max-w-max", className)} {...props}>
+      <EquipmentLabel
+        className="left-1/4 -top-0.5 scale-[0.35] z-10"
+        title={name}
+      />
       <Image
         priority
         className={cn(
           isRunning && "-hue-rotate-60",
           isSelected && !isRunning && isBlinking && "hue-rotate-[215deg]",
         )}
-        width={400}
-        src={screwConveyorPic}
-        alt="Шнековий конвеєр"
+        src={rotaryValvePic}
+        alt="поворотний клапан"
+        width={130}
       />
+      {children}
     </section>
   );
 }

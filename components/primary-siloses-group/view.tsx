@@ -1,25 +1,39 @@
+"use client";
+
 import React from "react";
+import { useUnit } from "effector-react";
 
-import { primarySiloses, rotaryValves } from "@/config";
+import { primarySilosesModel } from "@/stores";
+import { primarySiloses, rotaryValves, screws } from "@/config";
+import { cn } from "@/utils";
 
-import { Silo } from "../silo";
-import { Controls, SiloWithRotaryValve } from "./components";
+import { SiloWithScrewConveyor, SiloWithRotaryValve } from "./components";
+import { PrimarySilosesGroupProps } from "./types";
 
-export function PrimarySilosesGroup() {
+export function PrimarySilosesGroup({
+  className,
+  ...props
+}: PrimarySilosesGroupProps) {
+  const siloses = useUnit(primarySilosesModel.$siloses);
+
   return (
-    <section className="flex">
-      <Silo name={primarySiloses.s206}>
-        <Controls relatedSilo={primarySiloses.s206} />
-      </Silo>
+    <section className={cn("flex gap-4 max-w-max", className)} {...props}>
+      <SiloWithScrewConveyor
+        className="relative left-[36%]"
+        isRunning={false}
+        isSelected={Boolean(siloses.S206.selection)}
+        siloName={primarySiloses.s206}
+        screwName={screws.sc206}
+      />
       <SiloWithRotaryValve
         isRunning={false}
-        isSelected={false}
+        isSelected={Boolean(siloses.S207.selection)}
         rotaryValveName={rotaryValves.rv207}
         siloName={primarySiloses.s207}
       />
       <SiloWithRotaryValve
         isRunning={false}
-        isSelected={false}
+        isSelected={Boolean(siloses.S208.selection)}
         rotaryValveName={rotaryValves.rv208}
         siloName={primarySiloses.s208}
       />

@@ -1,18 +1,40 @@
+"use client";
+
 import React from "react";
+import { useUnit } from "effector-react";
 
-import { externalSiloses } from "@/config";
+import { primarySilosesModel } from "@/stores";
+import { externalSiloses, screws } from "@/config";
+import { cn } from "@/utils";
 
-import { Controls } from "./components";
-import { Silo } from "../silo";
+import { SiloWithScrewConveyor } from "./components";
+import { ExtraSilosesGroupProps } from "./types";
 
-export function ExtraSilosesGroup() {
+export function ExtraSilosesGroup({
+  className,
+  ...props
+}: ExtraSilosesGroupProps) {
+  const primarySiloses = useUnit(primarySilosesModel.$siloses);
+
   return (
-    <section className="flex">
-      {Object.values(externalSiloses).map((name) => (
-        <Silo key={name} name={name}>
-          <Controls relatedSilo={name} />
-        </Silo>
-      ))}
+    <section className={cn("flex max-w-max", className)} {...props}>
+      <SiloWithScrewConveyor
+        siloName={externalSiloses.s202}
+        screwName={screws.sc202_1}
+        isRunning={false}
+        isSelected={Object.values(primarySiloses).some(
+          (primarySilo) => primarySilo.selection === externalSiloses.s202,
+        )}
+      />
+      <SiloWithScrewConveyor
+        className="-translate-y-12 -left-[30%]"
+        siloName={externalSiloses.s204}
+        screwName={screws.sc204_1}
+        isRunning={false}
+        isSelected={Object.values(primarySiloses).some(
+          (primarySilo) => primarySilo.selection === externalSiloses.s204,
+        )}
+      />
     </section>
   );
 }

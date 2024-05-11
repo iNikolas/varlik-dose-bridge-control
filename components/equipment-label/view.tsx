@@ -20,7 +20,7 @@ export function EquipmentLabel({
       className={cn("absolute left-1/2 -translate-x-2/4 top-12", className)}
     >
       <div className="prose mb-4 max-w-min mx-auto">
-        <h2 className="text-info-content p-1 bg-info rounded shadow-inner pointer-events-none">
+        <h2 className="text-info-content p-1 bg-info rounded shadow-inner pointer-events-none text-nowrap">
           {title}
         </h2>
         <div className="max-w-max mx-auto">{children}</div>

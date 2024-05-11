@@ -5,5 +5,6 @@ export interface ScrewConveyorProps
   > {
   isRunning: boolean;
   isSelected: boolean;
+  isReversed?: boolean;
   name: string;
 }

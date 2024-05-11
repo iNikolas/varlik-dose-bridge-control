@@ -1,1 +1,1 @@
-export * from "./controls";
+export * from "./silo-with-screw-conveyor";

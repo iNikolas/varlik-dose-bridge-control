@@ -14,10 +14,7 @@ export function PipingAndInstrumentationDiagram({
 }: PipingAndInstrumentationDiagramProps) {
   return (
     <section
-      className={cn(
-        "relative w-[1500px] h-[800px] mx-auto [&_img]:my-8",
-        className,
-      )}
+      className={cn("relative w-[1500px] h-[800px] mx-auto", className)}
       {...props}
     >
       <div className="absolute top-0 -left-5">

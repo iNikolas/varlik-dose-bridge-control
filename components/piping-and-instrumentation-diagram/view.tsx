@@ -1,5 +1,9 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import { useGate } from "effector-react";
+
+import { controllerModel } from "@/stores";
 import { cn } from "@/utils";
 
 import { ExtraSilosesGroup } from "../extra-siloses-group";
@@ -12,6 +16,8 @@ export function PipingAndInstrumentationDiagram({
   className,
   ...props
 }: PipingAndInstrumentationDiagramProps) {
+  useGate(controllerModel.Gate);
+
   return (
     <section
       className={cn("relative w-[1500px] h-[800px] mx-auto", className)}

@@ -1,4 +1,5 @@
-import { externalSiloses } from "@/config";
+import { externalSiloses, weightDivider } from "@/config";
+import { ApiState } from "@/api/types";
 
 import { ModeChangeEvent, SilosesRecord, ThresholdChangeEvent } from "./types";
 
@@ -24,6 +25,21 @@ export function getDefaultStore(): SilosesRecord {
   assertIsSilosesRecord(result);
 
   return result;
+}
+
+export function getSiloDataFromApiResponse(data: ApiState): SilosesRecord {
+  return {
+    S202: {
+      name: "S202",
+      threshold: data.silo202Threshold / weightDivider,
+      isDelayed: !data.isImmediateFeedSilo202,
+    },
+    S204: {
+      name: "S204",
+      threshold: data.silo204Threshold / weightDivider,
+      isDelayed: !data.isImmediateFeedSilo204,
+    },
+  };
 }
 
 export function parseThresholdInput(

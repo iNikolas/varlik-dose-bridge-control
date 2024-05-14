@@ -16,3 +16,7 @@ export function applyCommonPropsToChildren(
       : child,
   );
 }
+
+export function parseSiloNumber(name: string): number {
+  return parseInt(name.replace(/\D/g, ""), 10);
+}

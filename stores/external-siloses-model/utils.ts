@@ -1,5 +1,5 @@
 import { externalSiloses, weightDivider } from "@/config";
-import { ApiState } from "@/api/types";
+import { ApiState } from "@/api";
 
 import { ModeChangeEvent, SilosesRecord, ThresholdChangeEvent } from "./types";
 
@@ -42,21 +42,27 @@ export function getSiloDataFromApiResponse(data: ApiState): SilosesRecord {
   };
 }
 
-export function parseThresholdInput(
-  siloses: SilosesRecord,
-  { name, threshold }: ThresholdChangeEvent,
-) {
+export function parseThreshold(threshold: string) {
   const cleanedThreshold = threshold.replace(/[^0-9,.]/g, "").replace(",", ".");
   const parsedThreshold = parseFloat(cleanedThreshold);
   const roundedThreshold = Number.isNaN(parsedThreshold)
     ? "0"
     : parsedThreshold.toFixed(2);
 
+  return (
+    Math.round(parseFloat(roundedThreshold) * weightDivider) / weightDivider
+  );
+}
+
+export function parseThresholdInput(
+  siloses: SilosesRecord,
+  { name, threshold }: ThresholdChangeEvent,
+) {
   return {
     ...siloses,
     [name]: {
       ...siloses[name],
-      threshold: parseFloat(roundedThreshold),
+      threshold: parseThreshold(threshold),
     },
   };
 }

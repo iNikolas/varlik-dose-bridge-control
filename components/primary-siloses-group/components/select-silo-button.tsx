@@ -23,7 +23,10 @@ export function SelectSiloButton({
   children: selection,
   ...props
 }: SelectSiloButtonProps) {
-  const { selected, events } = useSiloButtonSelection(relatedSilo, selection);
+  const { selected, events, disabled } = useSiloButtonSelection(
+    relatedSilo,
+    selection,
+  );
 
   return (
     <button
@@ -31,6 +34,7 @@ export function SelectSiloButton({
       className={cn(
         "btn btn-square mx-auto block mb-2",
         selected && "btn-success",
+        disabled && "cursor-not-allowed",
         className,
       )}
       {...events}

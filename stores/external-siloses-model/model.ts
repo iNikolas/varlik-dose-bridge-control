@@ -1,10 +1,16 @@
-import { createEvent, createStore, sample } from "effector";
+import { combine, createEvent, createStore, sample } from "effector";
 
-import { getStateFx, showErrorMessageFx, toggleFeedModeFx } from "@/effects";
+import {
+  getStateFx,
+  setSiloThresholdFx,
+  showErrorMessageFx,
+  toggleFeedModeFx,
+} from "@/effects";
 
 import {
   getDefaultStore,
   getSiloDataFromApiResponse,
+  parseThreshold,
   parseThresholdInput,
   processModeChange,
 } from "./utils";
@@ -15,9 +21,20 @@ export const modeChanged = createEvent<ModeChangeEvent>();
 
 export const $siloses = createStore<SilosesRecord>(getDefaultStore());
 
+export const $isPending = combine(
+  [toggleFeedModeFx.pending, setSiloThresholdFx.pending],
+  (tuple) => tuple.some(Boolean),
+);
+
 sample({
-  clock: [getStateFx.doneData, toggleFeedModeFx.doneData],
-  fn: getSiloDataFromApiResponse,
+  clock: [
+    getStateFx.doneData,
+    toggleFeedModeFx.doneData,
+    setSiloThresholdFx.doneData,
+  ],
+  source: $isPending,
+  filter: (isPending) => !isPending,
+  fn: (_, data) => getSiloDataFromApiResponse(data),
   target: $siloses,
 });
 
@@ -26,6 +43,15 @@ sample({
   source: $siloses,
   fn: parseThresholdInput,
   target: $siloses,
+});
+
+sample({
+  clock: thresholdChanged,
+  fn: ({ name, threshold }) => ({
+    silo: name,
+    threshold: parseThreshold(threshold),
+  }),
+  target: setSiloThresholdFx,
 });
 
 sample({
@@ -45,3 +71,5 @@ sample({
   clock: toggleFeedModeFx.failData,
   target: showErrorMessageFx,
 });
+
+sample({ clock: setSiloThresholdFx.failData, target: showErrorMessageFx });

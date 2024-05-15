@@ -9,13 +9,21 @@ export function useSiloButtonSelection(
   selection: ValueOf<typeof externalSiloses>,
 ) {
   const siloses = useUnit(primarySilosesModel.$siloses);
+  const isPending = useUnit(primarySilosesModel.$isPending);
   const selectionChanged = useUnit(primarySilosesModel.selectionChanged);
   const selected = selection === siloses[relatedSilo].selection;
 
   return {
     selected,
+    disabled: isPending,
     events: {
-      onClick: () => selectionChanged({ name: relatedSilo, selection }),
+      onClick: () => {
+        if (isPending) {
+          return;
+        }
+
+        selectionChanged({ name: relatedSilo, selection });
+      },
     },
   };
 }

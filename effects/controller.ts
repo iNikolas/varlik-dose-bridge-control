@@ -1,6 +1,11 @@
 import { EventCallable, createEffect } from "effector";
 
-import { getState, toggleFeedMode } from "@/api";
+import {
+  getState,
+  setPrimarySiloState,
+  setSiloThreshold,
+  toggleFeedMode,
+} from "@/api";
 
 export const getStateFx = createEffect(getState);
 
@@ -16,3 +21,7 @@ export const pollStateFx = createEffect((event: EventCallable<void>) => {
 export const stopStatePollingFx = createEffect(() => clearInterval(interval));
 
 export const toggleFeedModeFx = createEffect(toggleFeedMode);
+
+export const setSiloThresholdFx = createEffect(setSiloThreshold);
+
+export const setPrimarySiloStateFx = createEffect(setPrimarySiloState);

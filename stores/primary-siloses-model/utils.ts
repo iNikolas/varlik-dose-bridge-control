@@ -1,4 +1,8 @@
-import { primarySiloses } from "@/config";
+import { ValueOf } from "next/dist/shared/lib/constants";
+
+import { externalSiloses, primarySiloses, selections } from "@/config";
+import { PrimarySilo } from "@/entities";
+import { ApiState } from "@/api";
 
 import { SelectionChangedEvent, SilosesRecord } from "./types";
 
@@ -46,4 +50,47 @@ export function updateSilosesSelection(
   });
 
   return result;
+}
+
+function parseSelectionState(
+  selection: number,
+): ValueOf<typeof externalSiloses> | null {
+  return selections[selection] ?? null;
+}
+
+export function getSiloDataFromApiResponse({
+  s206SelectionState,
+  s207SelectionState,
+  s208SelectionState,
+}: ApiState): SilosesRecord {
+  return {
+    S206: {
+      name: "S206",
+      selection: parseSelectionState(s206SelectionState),
+    },
+    S207: {
+      name: "S207",
+      selection: parseSelectionState(s207SelectionState),
+    },
+    S208: {
+      name: "S208",
+      selection: parseSelectionState(s208SelectionState),
+    },
+  };
+}
+
+function findSelectionState(
+  silosesData: Array<PrimarySilo>,
+  selection: ValueOf<typeof externalSiloses>,
+): ValueOf<typeof primarySiloses> | null {
+  return silosesData.find((silo) => selection === silo.selection)?.name ?? null;
+}
+
+export function extractSelectionStates(data: SilosesRecord) {
+  const silosesData = Object.values(data);
+
+  return {
+    selectionState202: findSelectionState(silosesData, externalSiloses.s202),
+    selectionState204: findSelectionState(silosesData, externalSiloses.s204),
+  };
 }

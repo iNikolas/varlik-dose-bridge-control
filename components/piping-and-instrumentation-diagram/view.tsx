@@ -20,7 +20,7 @@ export function PipingAndInstrumentationDiagram({
 
   return (
     <section
-      className={cn("relative w-[1500px] h-[800px] mx-auto", className)}
+      className={cn("relative w-[1500px] mx-auto", className)}
       {...props}
     >
       <div className="absolute top-0 -left-5">
@@ -30,7 +30,7 @@ export function PipingAndInstrumentationDiagram({
             <PrimarySilosesGroup className="-translate-x-[15%]" />
           </div>
           <Pipes />
-          <WeighingHopper className="mx-auto translate-x-2 mt-20" />
+          <WeighingHopper className="mx-auto translate-x-2 mt-20 mb-4" />
         </div>
       </div>
     </section>

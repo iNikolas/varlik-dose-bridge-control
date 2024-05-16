@@ -3,7 +3,7 @@
 import React from "react";
 import { useUnit } from "effector-react";
 
-import { primarySilosesModel } from "@/stores";
+import { instrumentsModel, primarySilosesModel } from "@/stores";
 import { primarySiloses, rotaryValves, screws } from "@/config";
 import { cn } from "@/utils";
 
@@ -15,6 +15,11 @@ export function PrimarySilosesGroup({
   ...props
 }: PrimarySilosesGroupProps) {
   const siloses = useUnit(primarySilosesModel.$siloses);
+  const {
+    isScrewConveyor206Running,
+    isScrewConveyor207Running,
+    isRotaryValve208Running,
+  } = useUnit(instrumentsModel.$state);
 
   return (
     <section
@@ -23,19 +28,19 @@ export function PrimarySilosesGroup({
     >
       <SiloWithScrewConveyor
         className="relative left-[36%]"
-        isRunning={false}
+        isRunning={isScrewConveyor206Running}
         isSelected={Boolean(siloses.S206.selection)}
         siloName={primarySiloses.s206}
         screwName={screws.sc206}
       />
       <SiloWithRotaryValve
-        isRunning={false}
+        isRunning={isScrewConveyor207Running}
         isSelected={Boolean(siloses.S207.selection)}
         rotaryValveName={rotaryValves.rv207}
         siloName={primarySiloses.s207}
       />
       <SiloWithRotaryValve
-        isRunning={false}
+        isRunning={isRotaryValve208Running}
         isSelected={Boolean(siloses.S208.selection)}
         rotaryValveName={rotaryValves.rv208}
         siloName={primarySiloses.s208}

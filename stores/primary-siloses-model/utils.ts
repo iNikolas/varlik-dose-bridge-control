@@ -59,22 +59,22 @@ function parseSelectionState(
 }
 
 export function getSiloDataFromApiResponse({
-  s206SelectionState,
-  s207SelectionState,
-  s208SelectionState,
+  ss206,
+  ss207,
+  ss208,
 }: ApiState): SilosesRecord {
   return {
     S206: {
       name: "S206",
-      selection: parseSelectionState(s206SelectionState),
+      selection: parseSelectionState(ss206),
     },
     S207: {
       name: "S207",
-      selection: parseSelectionState(s207SelectionState),
+      selection: parseSelectionState(ss207),
     },
     S208: {
       name: "S208",
-      selection: parseSelectionState(s208SelectionState),
+      selection: parseSelectionState(ss208),
     },
   };
 }

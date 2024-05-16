@@ -58,7 +58,7 @@ export async function setPrimarySiloState({
 }: {
   selectionState202: string | null;
   selectionState204: string | null;
-}) {
+}): Promise<ApiState> {
   const response = await axiosInstance.post(apiRoutes.command, {
     c: commands.setPrimarySiloState,
     [propertyNames.selectionState202]: selectionState202

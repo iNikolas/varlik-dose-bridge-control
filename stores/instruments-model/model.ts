@@ -7,17 +7,17 @@ import {
   toggleFeedModeFx,
 } from "@/effects";
 
-import { getDefaultStore, mapApiResponse } from "./utils";
+import { getDefaultState, mapApiValues } from "./utils";
 
-export const $weighingData = createStore(getDefaultStore());
+export const $state = createStore(getDefaultState());
 
 sample({
   clock: [
-    setSiloThresholdFx.doneData,
-    toggleFeedModeFx.doneData,
     getStateFx.doneData,
+    toggleFeedModeFx.doneData,
+    setSiloThresholdFx.doneData,
     setPrimarySiloStateFx.doneData,
   ],
-  fn: mapApiResponse,
-  target: $weighingData,
+  fn: mapApiValues,
+  target: $state,
 });

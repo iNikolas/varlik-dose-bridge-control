@@ -31,13 +31,13 @@ export function getSiloDataFromApiResponse(data: ApiState): SilosesRecord {
   return {
     S202: {
       name: "S202",
-      threshold: data.silo202Threshold / weightDivider,
-      isDelayed: !data.isImmediateFeedSilo202,
+      threshold: data.t202 / weightDivider,
+      isDelayed: !data.im202,
     },
     S204: {
       name: "S204",
-      threshold: data.silo204Threshold / weightDivider,
-      isDelayed: !data.isImmediateFeedSilo204,
+      threshold: data.t204 / weightDivider,
+      isDelayed: !data.im204,
     },
   };
 }
